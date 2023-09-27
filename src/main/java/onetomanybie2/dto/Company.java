@@ -13,7 +13,7 @@ public class Company {
 	private String name;
 	private String address;
 	
-	@OneToMany
+	@OneToMany(mappedBy = "company")
 	private List<Employee> employees;
 
 	public void setEmployees(List<Employee> employees) {

@@ -8,22 +8,25 @@ import onetomanybie2.dto.Employee;
 public class MainCont {
 public static void main(String[] args) {
 	Company company=new Company();
-	company.setId(2);
-	company.setName("TcSS");
+	company.setName("HCL");
 	company.setAddress("Bangalore");
-	
+//	
 //	CompanyDao companyDao=new CompanyDao();
 //	companyDao.saveCompany(company);
+////	
+//	
+//	Employee employee=new Employee();
+//	employee.setId(5);
+//	employee.setName("naresh");
+//	employee.setCompany(company);
+//	
+//	EmployeeDao dao=new EmployeeDao();
+//	dao.saveEmployee( employee);
 //	
 	
-	Employee employee=new Employee();
-	employee.setId(5);
-	employee.setName("naresh");
-	employee.setCompany(company);
-	
-	EmployeeDao dao=new EmployeeDao();
-	dao.saveEmployee( employee);
-	
+	CompanyDao companyDao=new CompanyDao();
+//	companyDao.updateCompany(2, company);
+	companyDao.deleteCompany(2);
 	
 	
 }

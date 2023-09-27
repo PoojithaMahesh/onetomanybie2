@@ -2,6 +2,7 @@ package onetomanybie2.dto;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
@@ -9,7 +10,7 @@ public class Employee {
 	@Id
 	private int id;
 	private String name;
-	
+	@JoinColumn
 	@ManyToOne
 	private Company company;
 

@@ -24,21 +24,21 @@ public class EmployeeDao {
 			entityTransaction.begin();
 			entityManager.persist(employee);
 			
-	
+			if(company.getEmployees().isEmpty()) {
+//				you are the first employee of that company
+//				so im creating a new List of Employee
+				List<Employee> employees=new ArrayList<Employee>();
+				employees.add(employee);
+				company.setEmployees(employees);
+			}else {
 //				employees are already present in the company
+//				so im taking old employees as getEmployess
 				List<Employee> employees=company.getEmployees();
 				employees.add(employee);
 				company.setEmployees(employees);
-			
-			
-			
-			
-			
+			}
 			entityTransaction.commit();
-			
-			
-			
-			
+		
 		}else {
 			System.out.println("sorry company id is not present");
 		}
@@ -47,4 +47,73 @@ public class EmployeeDao {
 		
 		
 	}
+	
+	public void updateEmplpoyee(int id,Employee employee) {
+		EntityManager entityManager=getEntityManager();
+		EntityTransaction entityTransaction=entityManager.getTransaction();
+		Employee dbEmployee=entityManager.find(Employee.class, id);
+		if(dbEmployee!=null) {
+//			id is present
+			entityTransaction.begin();
+			employee.setId(id);
+			employee.setCompany(dbEmployee.getCompany());
+			
+			entityManager.merge(employee);
+			entityTransaction.commit();
+		}
+		
+		
+		
+		
+	}
+	
+	
+	
+	public void deleteEMplpoyee(int id) {
+		EntityManager entityManager=getEntityManager();
+		EntityTransaction entityTransaction=entityManager.getTransaction();
+//		check whether that company is present or not with the help of id
+		Employee dbEmployee=entityManager.find(Employee.class, id);
+		if(dbEmployee!=null) {
+//			that id is present
+			entityTransaction.begin();
+			entityManager.remove(dbEmployee);
+			entityTransaction.commit();
+		}else {
+//			id is not presengt
+			System.out.println("id is not present");
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
